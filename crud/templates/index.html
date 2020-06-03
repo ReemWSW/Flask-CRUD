@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2><b>Employees </b>
+    <a href="{{ url_for('insert') }}" class="btn btn-success float-right">Add Employees</a>
+</h2>
+
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for employee in employees %}
+    <tr>
+        <th scope="row">{{ employee.id }}</th>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.phone }}</td>
+        <td>
+            <a href="{{ url_for('update', id=employee.id) }}" class="btn btn-primary btn-xs">Edit</a>
+            <a href="/delete/{{employee.id}}" class="btn btn-danger btn-xs"
+               onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
+
+            <!--<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>-->
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
